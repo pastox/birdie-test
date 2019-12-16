@@ -1,78 +1,148 @@
-# Birdie Developer Test
-We would like to thank you for taking our developer test. We understand that often candidates will have many of these tests to complete. Therefore we think it's important to cut straight to the important stuff. With that in mind, we've gone ahead and created a boilerplate that mostly represents the kind of technical stack we work with. This saves you from having to create needless boilerplate code that does little to demonstrate your potential as a developer.
+# Birdie Developer Test - Aurélien Pasteau's submission
 
-## Context
+## Project architecture : 
 
-At Birdie, our app allows care givers to record observations of older adults receiving care, we name them **care recipients**.
+### front-end
 
-These could be anything from the recording of their mood (happy, sad, bored, confused) to what they drank today (1 pint of water).
+*Technologies :*
 
-Each of these observations are recorded as events in our database. Here's an example of a mood observation recorded
-in this event format:
+  * React
+  * Redux
+  * Redux Sagas
+  * Styled Components
+  * Typescript
+  * Axios
 
-``` json
-{  
-   "id":"decaa026-2ce5-49cb-aff9-92326b85a98c",
-   "event_type":"mood_observation",
-   "visit_id":"39b94aab-cc35-4874-807f-c23472aec663",
-   "timestamp":"2019-04-23T10:53:13+01:00",
-   "caregiver_id":"4786d616-259e-4d52-80f7-8cf7dc6d881a",
-   "care_recipient_id":"03f3306d-a4a3-4179-ab88-81af66df8b7c",
-   "mood":"okay",
-},
+*Files Structure :*
+
+```bash
+.
+├── node_modules
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── manifest.json
+├── src
+│   ├── assets
+│   │   └── images
+│   │       └── logo-birdie.svg
+│   ├── components
+│   │   ├── DatesSelector
+│   │   │   ├── DatesSelector.test.tsx
+│   │   │   └── DatesSelector.tsx
+│   │   ├── EventTypesSelector
+│   │   │   ├── EventTypesSelector.test.tsx
+│   │   │   └── EventTypesSelector.tsx
+│   │   ├── Logo.tsx
+│   │   ├── ParametersSelection
+│   │   │   ├── ParametersSelection.test.tsx
+│   │   │   └── ParametersSelection.tsx
+│   │   ├── PatientSelector
+│   │   │   ├── PatientSelector.test.tsx
+│   │   │   └── PatientSelector.tsx
+│   │   ├── SubTitle.tsx
+│   │   ├── Timeline
+│   │   │   ├── Timeline.test.tsx
+│   │   │   └── Timeline.tsx
+│   │   ├── Title.tsx
+│   │   └── app
+│   │       ├── App.test.tsx
+│   │       ├── App.tsx
+│   │       └── logo.svg
+│   ├── index.tsx
+│   ├── models
+│   │   └── Event.models.tsx
+│   ├── registerServiceWorker.ts
+│   ├── services # api calls
+│   │   └── api
+│   │       ├── events.api.services.ts
+│   │       ├── filters.api.services.ts
+│   │       ├── patients.api.services.ts
+│   │       └── url.api.ts
+│   ├── store # redux store
+│   │   ├── actions
+│   │   │   ├── dates.actions.test.ts
+│   │   │   ├── dates.actions.ts
+│   │   │   ├── events.actions.test.ts
+│   │   │   ├── events.actions.ts
+│   │   │   ├── filters.actions.test.ts
+│   │   │   ├── filters.actions.ts
+│   │   │   ├── patients.actions.test.ts
+│   │   │   ├── patients.actions.ts
+│   │   │   ├── utils.actions.test.ts
+│   │   │   └── utils.actions.ts
+│   │   ├── constants
+│   │   │   └── actionTypes.constants.ts
+│   │   ├── index.ts
+│   │   ├── reducers
+│   │   │   ├── dates.reducers.test.ts
+│   │   │   ├── dates.reducers.ts
+│   │   │   ├── events.reducers.test.ts
+│   │   │   ├── events.reducers.ts
+│   │   │   ├── filters.reducers.test.ts
+│   │   │   ├── filters.reducers.ts
+│   │   │   ├── index.reducers.test.ts
+│   │   │   ├── index.reducers.ts
+│   │   │   ├── initialState.ts
+│   │   │   ├── patients.reducers.test.ts
+│   │   │   ├── patients.reducers.ts
+│   │   │   ├── utils.reducers.test.ts
+│   │   │   └── utils.reducers.ts
+│   │   └── sagas
+│   │       ├── events.sagas.test.ts
+│   │       ├── events.sagas.ts
+│   │       ├── filters.sagas.test.ts
+│   │       ├── filters.sagas.ts
+│   │       ├── index.sagas.ts
+│   │       ├── patients.sagas.test.ts
+│   │       └── patients.sagas.ts
+│   └── utils
+│       ├── strings.utils.test.ts
+│       └── strings.utils.ts
+├── tsconfig.json
+├── tsconfig.test.json
+└── tslint.json
+
 ```
 
-Here's a quick explanation of the base properties:
+### back-end
 
-- `id`: Uniquely identifies the observation.
-- `event_type`: Title we use to categorise our events.
-- `visit_id`: Observations are traditionally observed during a visit between the caregiver (carer) and care recipient. This ID identifies that visit.
-- `caregiver_id`: Identifies who the caregiver (carer) was that made this observation.
-- `care_recipient_id`: Identifies the care recipient this observation is for.
+*Technologies :*
 
-On top of that, there can be **additional properties** based on the `event_type`:
+  * Node
+  * Express
+  * Typescript
+  * Knek
+  * MySQL
 
-- `mood` describes the mood of the care recipient as reported by the caregiver
 
-The database (we should have sent you credentials) contains some of these observation events, within the `events` table.
+*Files Structure :*
 
-## Challenge
+```bash
+.
+├── __tests__
+│   └── event.services.spec.ts
+├── node_modules
+├── nodemon.json
+├── package-lock.json
+├── package.json
+├── src
+│   ├── application.ts # redirection
+│   ├── controllers
+│   │   └── events.controllers.ts # events router
+│   ├── index.ts # entry point
+│   └── services # connexion with the database
+│       ├── events.services.ts
+│       ├── index.services.ts
+│       └── knex.ts
+├── tsconfig.json
+└── tslint.json
 
-*Display the information to a family member*
+```
 
-#### Your challenge is to clone this repository and create a small web application to visualize these observations, so that looking at it is valuable to a family member of this care recipient.
-
-This could mean presenting it in the following forms:
-
- - A table
- - A graph
- - A timeline
-
- Or any other way/combination of those. We are test driven here at Birdie so please make sure you write tests to validate your work.
-
-## Deliverables
-
-- Put your code on Github and send us the link to the repository
-- Deploying the code to a platform like [Heroku](https://heroku.com) is a great plus.
-- **If you are unable to deploy your code please send a recording of the application working**
-
-## Set up
-
-Here's the technical stack this boilerplate was made with:
-
-### Front end
-* [React](https://reactjs.org/)
-* [Redux](https://redux.js.org/introduction/getting-started)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Redux sagas](https://redux-saga.js.org/docs/introduction/BeginnerTutorial.html)
-* [Styled components](https://www.styled-components.com/)
-
-### Back end
-* [Express](https://expressjs.com/)
-* [MySQL](https://www.mysql.com/)
-* [TypeScript](https://www.typescriptlang.org/)
-
-## Usage
+## Usage for launching the application in development mode
 
 1. Start the API. (Run the following commands within the `backend` folder)
 
@@ -81,7 +151,10 @@ Here's the technical stack this boilerplate was made with:
    npm install
    ```
    
-   b. Run the HTTP server (will start on port `8000`)
+   b. Create a `.env` file at the root of the project and copy the content of `.env.template` inside.
+      Finally, fill in the blanks with the database credentials
+
+   c. Run the HTTP server (will start on port `8000`)
    ```
    npm run dev
    ```

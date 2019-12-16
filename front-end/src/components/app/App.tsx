@@ -1,63 +1,86 @@
 import * as React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { RootState } from '@App/store/reducers';
+import { RootState } from '../../store/reducers/index.reducers';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import Title from '@App/components/Title';
-import Logo from '@App/components/Logo';
-import SubTitle from '@App/components/SubTitle';
+import Title from '../../components/Title';
+import Logo from '../../components/Logo';
+import SubTitle from '../../components/SubTitle';
+import ParametersSelection from '../ParametersSelection/ParametersSelection';
+import MyTimeline from '../Timeline/Timeline';
+import { connexionError } from '../../store/reducers/utils.reducers';
 
 const LogoUrl = require('../../assets/images/logo-birdie.svg');
 
-interface AppProps {
-
-}
-
-interface AppState {
-
-}
-
 const GlobalStyle = createGlobalStyle`
+  html, #root {
+    height : 100%;
+  }
   body {
-    height: 100vh;
+    height: 100%;
     background-color: #F9F9F9;
-    > div {
-      height: 100%;
-    }
   }
 `;
+
+const AppHeader = styled.div`
+  width : 100%;
+  height : 13%;
+  border-bottom : 1px solid lightgray;
+  display : flex;
+  justify-content : space-between;
+  align-items : center;
+  padding-left : 2%;
+  padding-right : 2%;
+`
 
 const AppContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 85%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  flex-direction: column;
 `;
 
-class App extends React.Component<AppProps, AppState> {
-  public constructor(props: AppProps) {
-    super(props);
-  }
+const ErrorMessage = styled.h1`
+  color : red;
+`
 
-  public render() {
-    return (
-      <>
-        <GlobalStyle />
-        <AppContainer>
-          <Logo src={LogoUrl} />
-          <Title>Welcome to the birdie test</Title>
-          <SubTitle>Best of luck!</SubTitle>
-        </AppContainer>
-      </>
-    );
-  }
+interface AppProps {
+  connexionError : boolean;
 }
 
-const mapStateToProps = (state: RootState, ownProps: object) => {};
+const  App : React.FC<AppProps> = (props : AppProps) => {
+  let content : React.ReactNode;
+  if (props.connexionError) {
+    content = <ErrorMessage>Connexion Error</ErrorMessage>
+  } else {
+    content = (
+      <>
+        <ParametersSelection/>
+        <MyTimeline/>
+      </>
+    )
+  }
+  return (
+    <>
+      <GlobalStyle />
+      <AppHeader>
+        <Logo src={LogoUrl} />
+        <div>
+          <Title>Birdie Test</Title>
+          <SubTitle>By Aurélien Pasteau</SubTitle>
+        </div>
+      </AppHeader>
+      <AppContainer>
+        {content}
+      </AppContainer>
+    </>
+  );
+}
 
-const mapDispatchToProps = (dispatch: Dispatch<RootState>) => {};
+const mapStateToProps = (state: RootState, ownProps: object) => ({
+  connexionError : state.connexionError
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

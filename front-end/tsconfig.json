@@ -1,28 +1,22 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@App/*": [
-        "src/*"
-      ]
-    },
-    "outDir": "build/dist",
+    "outDir": "../../backend/build/dist",
     "module": "esnext",
     "target": "es5",
     "types": ["react", "jest", "node"],
-    "lib": ["es2017", "dom"],
-    "sourceMap": true,
+    "lib": ["es2017", "dom", "dom.Iterable"],
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    "isolatedModules": true,
+    "noEmit": true,
+    "resolveJsonModule":  true,
+    "strict" : true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck" : true
   },
   "exclude": [
     "node_modules",
@@ -32,5 +26,8 @@
     "webpack",
     "jest",
     "src/setupTests.ts"
+  ],
+  "include": [
+    "src"
   ]
 }

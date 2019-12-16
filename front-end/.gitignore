@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-
+package-lock.json
 # testing
 /coverage
 
@@ -10,8 +10,8 @@
 /build
 
 # misc
-.idea
-.DS_Store
+*.idea
+*.DS_Store
 .env.local
 .env.development.local
 .env.test.local

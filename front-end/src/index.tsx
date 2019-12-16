@@ -1,9 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import store from '@App/store';
+import store from './store/index';
 import { Provider } from 'react-redux';
-import App from '@App/components/app/App';
+import App from './components/app/App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 ReactDOM.render(
   <Provider store={store}>
