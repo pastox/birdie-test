@@ -4,7 +4,7 @@
 
 ### front-end
 
-*Technologies :*
+**Technologies :**
 
   * React
   * Redux
@@ -13,7 +13,7 @@
   * Typescript
   * Axios
 
-*Files Structure :*
+**Files Structure :**
 
 ```bash
 .
@@ -171,3 +171,11 @@
    ```
    npm start
    ```
+
+## Next Steps
+
+### If I were to continue working on this project, I would probably
+
+  * Add authentication method so that a family member can only view events concerning his/her own care recipient
+  * Improve the design of the frontend and make it more responsive for small screens
+  * Improve the user experience by adding some loading components while fetching data from the database
