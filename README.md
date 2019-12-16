@@ -150,11 +150,13 @@
    ```
    npm install
    ```
+
+   b. In the `node_modules/react-timeline-scribble` folder, add a file named `index.d.ts` containing `declare module 'react-timeline-scribble';`
    
-   b. Create a `.env` file at the root of the project and copy the content of `.env.template` inside.
+   c. Create a `.env` file at the root of the project and copy the content of `.env.template` inside.
       Finally, fill in the blanks with the database credentials
 
-   c. Run the HTTP server (will start on port `8080`)
+   d. Run the HTTP server (will start on port `8080`)
    ```
    npm run dev
    ```
