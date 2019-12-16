@@ -154,7 +154,7 @@
    b. Create a `.env` file at the root of the project and copy the content of `.env.template` inside.
       Finally, fill in the blanks with the database credentials
 
-   c. Run the HTTP server (will start on port `8000`)
+   c. Run the HTTP server (will start on port `8080`)
    ```
    npm run dev
    ```
